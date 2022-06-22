@@ -11,13 +11,13 @@ def speak(text):
     playsound(filename)
 
    
-braille_encode = {
+braille_decode = {
     '1': 'a', '12': 'b', '14': 'c', '145': 'd', '15': 'e', '124': 'f',
     '1245': 'g', '125': 'h', '24': 'i', '245': 'j', '13': 'k', '123': 'l', '134': 'm',
     '1345': 'n', '135': 'o', '1234': 'p', '12345': 'q', '1235': 'r', '234': 's', '2345': 't',
     '136': 'u', '1236': 'v', '2456': 'w', '1346': 'x', '13456': 'y', '1356': 'z',
     '345': 'ă', '16': 'â', '2346': 'đ', '126': 'ê', '1456': 'ô', '246': 'ơ', '1256': 'ư',
-    '35': 'sắc', '56': 'huyền', '26': 'hỏi', '36': 'ngã', '6': 'nặng'}
+    '35': 'sắc', '56': 'huyền', '26': 'hỏi', '36': 'ngã', '6': 'nặng'
 }
                 
 alphabet = ['a', 'à', 'ả', 'ã', 'á', 'ạ', 'ă', 'ằ', 'ẳ', 'ẵ', 'ắ', 'ặ', 'â', 'ầ', 'ẩ', 'ẫ', 'ấ', 'ậ', 'b', 'c', 'd', 'đ', 
@@ -46,7 +46,6 @@ while True:
     elif (inp == 'word'):
         tam = word
         n = len(tam)
-        
         for i in range(0, n):
             if (tam[i] == "<"):
                 char_index = alphabet.index(tam[i+1])
@@ -77,8 +76,8 @@ while True:
         speak(word)
         
     else:  # for letters
-        if (inp in braille_encode.values()):
-            letter = braille_encode[inp]
+        if (inp in braille_decode.keys()):
+            letter = braille_decode[inp]
             word = word + letter
             
             if (letter == 'i'):
