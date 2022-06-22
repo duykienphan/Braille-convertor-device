@@ -1,5 +1,6 @@
 from gtts import gTTS #need internet connection
 import os
+import time
 from playsound import playsound #use playsound==1.2.2 package
 
 def speak(text):
@@ -32,7 +33,7 @@ text = ""
 func = ['space', 'word']
 
 while True:
-    inp = input("Nhap: ").lower()
+    inp = input("Nhap: ")
     
     if (inp == 'q'):
         speak("Chào tạm biệt!")
@@ -44,22 +45,32 @@ while True:
         word = word + " "
         print(word)
         speak("Dấu cách")
-        
     elif (inp == 'word'):   # combine letter+tone
         tam = word
+        time.sleep(0.5)
         for i in range(0, len(tam)):
             if tam[i] in tone_decode.values():
-                if (tam[i] == "<"): char_index = 4 
-                elif (tam[i] == ">"): char_index = 1
-                elif (tam[i] == "?"): char_index = 2
-                elif (tam[i] == "~"): char_index = 3
-                else: char_index = 5
+                if (tam[i] == "<"): 
+                    char_index = 4 
+                elif (tam[i] == ">"): 
+                    char_index = 1
+                elif (tam[i] == "?"): 
+                    char_index = 2
+                elif (tam[i] == "~"): 
+                    char_index = 3
+                else: 
+                    char_index = 5
                 char_index = char_index + alphabet.index(tam[i+1])
                 temp = tam[i] + tam[i+1]
                 temp_replaced = alphabet[char_index]
                 word = tam.replace(temp, temp_replaced)
+                char_index = ""
+            else:
+                char_index = ""
+                pass
 
         print(word)
+        time.sleep(1)
         speak(word)
         
     else:  # for letters
@@ -78,7 +89,8 @@ while True:
             else:
                 text = "Dấu " + letter
                 word = word + tone_decode[inp]
-                print(word)
+                print(word) 
         else:
             text = "Ký tự không tồn tại"
+            
         speak(text)
