@@ -47,31 +47,12 @@ while True:
         tam = word
         n = len(tam)
         for i in range(0, n):
-            if (tam[i] == "<"):
+            if tam[i] == in ["<", ">", "?", "~", "."]:
                 char_index = alphabet.index(tam[i+1])
                 temp = tam[i] + tam[i+1]
                 temp_replaced = alphabet[char_index+4]
                 word = tam.replace(temp, temp_replaced)
-            elif (tam[i] == ">"):
-                char_index = alphabet.index(tam[i+1])
-                temp = tam[i] + tam[i+1]
-                temp_replaced = alphabet[char_index+1]
-                word = tam.replace(temp, temp_replaced)
-            elif (tam[i] == "?"):
-                char_index = alphabet.index(tam[i+1])
-                temp = tam[i] + tam[i+1]
-                temp_replaced = alphabet[char_index+4]
-                word = tam.replace(temp, temp_replaced)
-            elif (tam[i] == "~"):
-                char_index = alphabet.index(tam[i+1])
-                temp = tam[i] + tam[i+1]
-                temp_replaced = alphabet[char_index+4]
-                word = tam.replace(temp, temp_replaced)
-            elif (tam[i] == "."):
-                char_index = alphabet.index(tam[i+1])
-                temp = tam[i] + tam[i+1]
-                temp_replaced = alphabet[char_index+4]
-                word = tam.replace(temp, temp_replaced)
+
         print(word)
         speak(word)
         
