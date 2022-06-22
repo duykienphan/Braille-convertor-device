@@ -47,7 +47,7 @@ while True:
         tam = word
         n = len(tam)
         for i in range(0, n):
-            if tam[i] == in ["<", ">", "?", "~", "."]:
+            if tam[i] in ["<", ">", "?", "~", "."]:
                 char_index = alphabet.index(tam[i+1])
                 temp = tam[i] + tam[i+1]
                 temp_replaced = alphabet[char_index+4]
