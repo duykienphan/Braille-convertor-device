@@ -18,7 +18,9 @@ braille_decode = {
     '345': 'ă', '16': 'â', '2346': 'đ', '126': 'ê', '1456': 'ô', '246': 'ơ', '1256': 'ư',
     '35': 'sắc', '56': 'huyền', '26': 'hỏi', '36': 'ngã', '6': 'nặng'
 }
-                
+
+tone_decode = {'35': '<', '56': '>', '26': '?', '36': '~', '6': '.'}
+
 alphabet = ['a', 'à', 'ả', 'ã', 'á', 'ạ', 'ă', 'ằ', 'ẳ', 'ẵ', 'ắ', 'ặ', 'â', 'ầ', 'ẩ', 'ẫ', 'ấ', 'ậ', 'b', 'c', 'd', 'đ', 
         'e', 'è', 'ẻ', 'ẽ', 'é', 'ẹ', 'ê', 'ề', 'ể', 'ễ', 'ế', 'ệ', 'f', 'g', 'h', 'i', 'ì', 'ỉ', 'ĩ', 'í', 'ị', 'j', 'k', 
         'l', 'm', 'n', 'o', 'ò', 'ỏ', 'õ', 'ó', 'ọ', 'ô', 'ồ', 'ổ', 'ỗ', 'ố', 'ộ', 'ơ', 'ờ', 'ở', 'ỡ', 'ớ', 'ợ', 'p', 'q', 
@@ -57,16 +59,14 @@ while True:
     else:  # for letters
         if (inp in braille_decode.keys()):
             letter = braille_decode[inp]
-            word = word + letter
-            
-            if (letter == 'i'):
-                text = "Chữ i ngắn"
-            elif (letter == 'y'):
-                text = "Chữ y dài"
+            if len(letter) == 1:
+                word = word + letter
+                if (letter == 'i'): text = "Chữ i ngắn"
+                elif (letter == 'y'): text = "Chữ y dài"
+                else: text = "Chữ " + letter
             else:
-                if len(letter) == 1: text = "Chữ " + letter
-                else: text = "Dấu " + letter
-                    
+                text = "Dấu " + letter
+                word = word + tone_decode[inp]     
         else:
             text = "Ký tự không tồn tại"
         speak(text)
