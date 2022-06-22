@@ -86,7 +86,7 @@ while True:
                 text = "Chữ y dài"
             else:
                 if len(letter) == 1: text = "Chữ " + letter
-                text = "Dấu " + letter
+                else: text = "Dấu " + letter
                     
         else:
             text = "Ký tự không tồn tại"
