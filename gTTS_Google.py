@@ -85,10 +85,8 @@ while True:
             elif (letter == 'y'):
                 text = "Chữ y dài"
             else:
-                if letter in ["<", ">", "?", "~", "."]:
-                    text = "Dấu " + letter
-                else:
-                    text = "Chữ " + letter
+                if len(letter) == 1: text = "Chữ " + letter
+                text = "Dấu " + letter
                     
         else:
             text = "Ký tự không tồn tại"
