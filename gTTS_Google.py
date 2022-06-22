@@ -3,9 +3,8 @@ import os
 from playsound import playsound #use playsound==1.2.2 package
 
 def speak(text):
-    i = 0
     tts = gTTS(text=text, tld='com.vn', lang='vi')
-    os.remove("D:/Kien Phan/Projects/Text to speech - Python/voice.mp3")
+    os.remove("voice.mp3")
     filename = "voice.mp3"
     tts.save(filename)
     playsound(filename)
@@ -52,7 +51,6 @@ while True:
                 temp = tam[i] + tam[i+1]
                 temp_replaced = alphabet[char_index+4]
                 word = tam.replace(temp, temp_replaced)
-
         print(word)
         speak(word)
         
