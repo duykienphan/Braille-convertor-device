@@ -21,6 +21,7 @@ braille_decode = {
 }
 
 tone_decode = {'35': '<', '56': '>', '26': '?', '36': '~', '6': '.'}
+tone_index_jump = {'<': 4, '>': 1, '?': 2, '~': 3, '.': 5}
 
 alphabet = ['a', 'à', 'ả', 'ã', 'á', 'ạ', 'ă', 'ằ', 'ẳ', 'ẵ', 'ắ', 'ặ', 'â', 'ầ', 'ẩ', 'ẫ', 'ấ', 'ậ', 'b', 'c', 'd', 'đ', 
         'e', 'è', 'ẻ', 'ẽ', 'é', 'ẹ', 'ê', 'ề', 'ể', 'ễ', 'ế', 'ệ', 'f', 'g', 'h', 'i', 'ì', 'ỉ', 'ĩ', 'í', 'ị', 'j', 'k', 
@@ -45,29 +46,17 @@ while True:
         word = word + " "
         print(word)
         speak("Dấu cách")
+        
     elif (inp == 'word'):   # combine letter+tone
-        tam = word
         time.sleep(0.5)
-        for i in range(0, len(tam)):
-            if tam[i] in tone_decode.values():
-                if (tam[i] == "<"): 
-                    char_index = 4 
-                elif (tam[i] == ">"): 
-                    char_index = 1
-                elif (tam[i] == "?"): 
-                    char_index = 2
-                elif (tam[i] == "~"): 
-                    char_index = 3
-                else: 
-                    char_index = 5
-                char_index = char_index + alphabet.index(tam[i+1])
-                temp = tam[i] + tam[i+1]
-                temp_replaced = alphabet[char_index]
-                word = tam.replace(temp, temp_replaced)
-                char_index = ""
-            else:
-                char_index = ""
-                pass
+         for i in range(len(word)):
+            if word[i] in tone_decode.values():
+                tone = word[i]
+                letter_index = alphabet.index(word[i+1])
+                old = tone + alphabet[letter_index]
+                combined = alphabet[letter_index + tone_index_jump[tone]]
+                word = word.replace(old, combined)
+                break   # every word has a maximum tone of 1, so break after combined this only one.
 
         print(word)
         time.sleep(1)
