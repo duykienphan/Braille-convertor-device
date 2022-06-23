@@ -56,10 +56,8 @@ while True:
                 old = tone + alphabet[letter_index]
                 combined = alphabet[letter_index + tone_index_jump[tone]]
                 word = word.replace(old, combined)
-                break   # every word has a maximum tone of 1, so break after combined this only one.
-
+                #break   # every word has a maximum tone of 1, so break after combined this only one.
         print(word)
-        time.sleep(1)
         speak(word)
         
     else:  # for letters
